@@ -4,7 +4,7 @@ A Plugin that compresses SVG assets using SVGO, right when you export them. This
 
 ## Install
 
-- Download [SVGO Compressor](#)
+- Download [SVGO Compressor](https://github.com/BohemianCoding/svgo-compressor/archive/master.zip)
 - Double click to install
 
 ## Usage
