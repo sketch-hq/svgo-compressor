@@ -40,7 +40,7 @@ function extractManifestObject() {
 }
 
 gulp.task('clean', function () {
-  return del(['build', 'dist']);
+  return del(['build', 'dist', 'SVGO Compressor.sketchplugin']);
 });
 
 gulp.task('prepare-manifest', function (callback) {
