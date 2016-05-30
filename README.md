@@ -27,3 +27,22 @@ We would like to thank:
 
 - The [SVGO project](https://github.com/svg/svgo), for creating the golden standard for SVG compression.
 - [Andrey Shakhmin](https://github.com/turbobabr), for his inspiration during the [Hamburg Hackathon](http://designtoolshackday.com), where he showed us how to use node modules inside Sketch.
+
+## Development
+
+Run
+
+```
+npm install -g gulp
+npm install
+```
+
+to install all the dependencies. Then run
+
+```
+gulp
+```
+
+to build the Plugin in the 'dist' folder and install it into Sketch.
+
+To edit the Plugin's code, just edit `src/plugin.js` and run `gulp` again (or, for the ultimate laziness, run `gulp watch` and it will observe any changes in the file and rebuild the Plugin every time you save it.)
