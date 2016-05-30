@@ -46,7 +46,7 @@ export const SketchPlugin = {
   authorEmail: "ale@sketchapp.com",
   version: "1.3",
   identifier: "com.sketchapp.plugins.svgo-compressor",
-  homepage: "https:/github.com/bomberstudios/svgo-compressor",
+  homepage: "https:/github.com/BohemianCoding/svgo-compressor",
   compatibleVersion: 3.8,
   commands: {
     svgo: {
