@@ -155,7 +155,6 @@ export const SketchPlugin = {
           // Plugin was run from the menu, so let's open the settings window
           // context.document.showMessage("Opening Settings")
           var alert = COSAlertWindow.new()
-          var iconPath = context.plugin.urlForResourceNamed('settings.png').path()
           alert.setMessageText("About SVGO Compressor")
           alert.setInformativeText("This Plugin uses SVGO to compress SVG assets exported from Sketch.\n\nIt works automatically whenever you export to SVG, so you don’t need to do anything special. Just work on your design as always, and enjoy smaller & cleaner SVG files.\n\nIf for some reason you’re not happy with the default options, you can edit the svgo.json file in the Application Support folder for Sketch.\n")
           alert.addButtonWithTitle('Edit SVGO Settings…')
