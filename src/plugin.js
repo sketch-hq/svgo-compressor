@@ -44,7 +44,7 @@ export const SketchPlugin = {
   description: "A Plugin that compresses SVG assets using SVGO, right when you export them. This Plugin *requires* Sketch 3.8.",
   author: "Ale Muñoz",
   authorEmail: "ale@sketchapp.com",
-  version: "1.3.2",
+  version: "1.3.3",
   identifier: "com.sketchapp.plugins.svgo-compressor",
   homepage: "https:/github.com/BohemianCoding/svgo-compressor",
   compatibleVersion: 3.8,
@@ -54,7 +54,8 @@ export const SketchPlugin = {
       handlers: {
         run : "___svgo_run_handler_",
         actions: {
-          "ExportSlices": "___svgo_run_handler_" // TODO: Fix this ugly hack
+          "ExportSlices": "___svgo_run_handler_", // TODO: Fix this ugly hack
+          "Export": "___svgo_run_handler_" // TODO: Fix this ugly hack
         }
       },
       run(context) {
