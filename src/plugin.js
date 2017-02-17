@@ -1,4 +1,5 @@
 var svgo                           = require('svgo')
+var addAttributesToSVGElement      = require('svgo/plugins/addAttributesToSVGElement')
 var addClassesToSVGElement         = require('svgo/plugins/addClassesToSVGElement')
 var cleanupAttrs                   = require('svgo/plugins/cleanupAttrs')
 var cleanupEnableBackground        = require('svgo/plugins/cleanupEnableBackground')
@@ -21,6 +22,7 @@ var removeDesc                     = require('svgo/plugins/removeDesc')
 var removeDimensions               = require('svgo/plugins/removeDimensions')
 var removeDoctype                  = require('svgo/plugins/removeDoctype')
 var removeEditorsNSData            = require('svgo/plugins/removeEditorsNSData')
+var removeElementsByAttr           = require('svgo/plugins/removeElementsByAttr')
 var removeEmptyAttrs               = require('svgo/plugins/removeEmptyAttrs')
 var removeEmptyContainers          = require('svgo/plugins/removeEmptyContainers')
 var removeEmptyText                = require('svgo/plugins/removeEmptyText')
@@ -35,6 +37,7 @@ var removeUnusedNS                 = require('svgo/plugins/removeUnusedNS')
 var removeUselessDefs              = require('svgo/plugins/removeUselessDefs')
 var removeUselessStrokeAndFill     = require('svgo/plugins/removeUselessStrokeAndFill')
 var removeViewBox                  = require('svgo/plugins/removeViewBox')
+var removeXMLNS                    = require('svgo/plugins/removeXMLNS')
 var removeXMLProcInst              = require('svgo/plugins/removeXMLProcInst')
 var sortAttrs                      = require('svgo/plugins/sortAttrs')
 var transformsWithOnePath          = require('svgo/plugins/transformsWithOnePath')
@@ -44,7 +47,7 @@ export const SketchPlugin = {
   description: "A Plugin that compresses SVG assets using SVGO, right when you export them. This Plugin *requires* Sketch 3.8.",
   author: "Ale Muñoz",
   authorEmail: "ale@sketchapp.com",
-  version: "1.3.4",
+  version: "1.3.6",
   identifier: "com.sketchapp.plugins.svgo-compressor",
   homepage: "https:/github.com/BohemianCoding/svgo-compressor",
   compatibleVersion: 3.8,
@@ -176,17 +179,22 @@ export const SketchPlugin = {
             var plugin = eval(item.name)
             log('Enabled plugin: ' + item.name)
             plugin.active = true
-            if (item.params != null) {
-              if (plugin.params == undefined) {
-                plugin.params = {}
-              }
-              for (var attrname in item.params) {
-                plugin.params[attrname] = item.params[attrname]
+            if (plugin.params) {
+              // Plugin supports params
+              log('—› default params: ' + JSON.stringify(plugin.params, null, 2))
+              if (item.params != null) {
+                log('—› new params: ' + JSON.stringify(item.params, null, 2))
+                if (plugin.params == undefined) {
+                  plugin.params = {}
+                }
+                for (var attrname in item.params) {
+                  plugin.params[attrname] = item.params[attrname]
+                }
+                log('—› resulting params: ' + JSON.stringify(plugin.params, null, 2))
               }
             }
             parsedSVGOPlugins.push([plugin])
           }
-
           var exports = context.actionContext.exports
           var filesToCompress = []
           for (var i=0; i < exports.count(); i++) {
