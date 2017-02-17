@@ -178,23 +178,25 @@ export const SketchPlugin = {
             var item = svgoJSON.plugins[j]
             var plugin = eval(item.name)
             log('Enabled plugin: ' + item.name)
+            plugin.pluginName = item.name
             plugin.active = true
             if (plugin.params) {
               // Plugin supports params
               log('—› default params: ' + JSON.stringify(plugin.params, null, 2))
-              if (item.params != null) {
-                log('—› new params: ' + JSON.stringify(item.params, null, 2))
-                if (plugin.params == undefined) {
-                  plugin.params = {}
-                }
-                for (var attrname in item.params) {
-                  plugin.params[attrname] = item.params[attrname]
-                }
-                log('—› resulting params: ' + JSON.stringify(plugin.params, null, 2))
+            }
+            if (item.params != null) {
+              log('—› new params: ' + JSON.stringify(item.params, null, 2))
+              if (plugin.params == undefined) {
+                plugin.params = {}
               }
+              for (var attrname in item.params) {
+                plugin.params[attrname] = item.params[attrname]
+              }
+              log('—› resulting params: ' + JSON.stringify(plugin.params, null, 2))
             }
             parsedSVGOPlugins.push([plugin])
           }
+
           var exports = context.actionContext.exports
           var filesToCompress = []
           for (var i=0; i < exports.count(); i++) {
@@ -221,6 +223,14 @@ export const SketchPlugin = {
               var currentFile = filesToCompress[i]
               var svgString = "" + NSString.stringWithContentsOfFile_encoding_error(currentFile, NSUTF8StringEncoding, nil)
               originalTotalSize += svgString.length
+              for (var pluginIndex = 0; pluginIndex < svgCompressor.config.plugins[0].length; pluginIndex++) {
+                var plugin = svgCompressor.config.plugins[0][pluginIndex]
+                if (plugin.pluginName == "cleanupIDs") {
+                  var prefix = currentFile.lastPathComponent().stringByDeletingPathExtension().replace(/\s+/g, '-').toLowerCase() + "-"
+                  log('Setting cleanupIDs prefix to: ' + prefix)
+                  plugin.params['prefix'] = prefix
+                }
+              }
               svgCompressor.optimize(svgString, function(result) {
                 compressedTotalSize += result.data.length
                 NSString.stringWithString(result.data).writeToFile_atomically_encoding_error(currentFile, true, NSUTF8StringEncoding, nil)
