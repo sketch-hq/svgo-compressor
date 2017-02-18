@@ -124,12 +124,11 @@ export const SketchPlugin = {
             "pretty": true,
             "indent": 2,
             "plugins":[
-              { "name": "cleanupAttrs" },
-              { "name": "cleanupEnableBackground" },
               { "name": "cleanupIDs" },
               { "name": "cleanupListOfValues" },
               { "name": "cleanupNumericValues" },
               { "name": "collapseGroups" },
+              { "name": "convertColors" },
               { "name": "convertStyleToAttrs" },
               { "name": "convertTransform" },
               { "name": "mergePaths" },
