@@ -77,6 +77,7 @@ export const SketchPlugin = {
           // 
           // This is the list of SVGO Plugins available as of 2016-05-26:
           // 
+          // - addAttributesToSVGElement - adds attributes to an outer <svg> element
           // - addClassesToSVGElement - add classnames to an outer <svg> element
           // - cleanupAttrs - cleanup attributes from newlines, trailing and repeating spaces
           // - cleanUpEnableBackground - remove or cleanup enable-background attribute when possible
@@ -147,6 +148,7 @@ export const SketchPlugin = {
               { "name": "removeUnusedNS" },
               { "name": "removeUselessDefs" },
               { "name": "removeUselessStrokeAndFill" },
+              { "name": "removeXMLNS" },
               { "name": "removeXMLProcInst" },
               { "name": "sortAttrs" }
             ]
