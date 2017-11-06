@@ -49,7 +49,7 @@ export const SketchPlugin = {
   description: "A Plugin that compresses SVG assets using SVGO, right when you export them. This Plugin *requires* Sketch 3.8.",
   author: "Ale Muñoz",
   authorEmail: "ale@sketchapp.com",
-  version: "1.3.7",
+  version: "1.3.8",
   identifier: "com.sketchapp.plugins.svgo-compressor",
   homepage: "https:/github.com/BohemianCoding/svgo-compressor",
   compatibleVersion: 3.8,
@@ -170,7 +170,7 @@ export const SketchPlugin = {
           var response = alert.runModal()
           if(response === 1000) {
             var open_finder = NSTask.alloc().init(),
-                open_finder_args = NSArray.arrayWithObjects(svgoJSONFilePath, nil)
+                open_finder_args = NSArray.arrayWithArray([svgoJSONFilePath])
                 open_finder.setLaunchPath("/usr/bin/open")
                 open_finder.setArguments(open_finder_args)
                 open_finder.launch()
