@@ -1,0 +1,19 @@
+{
+  "compatibleVersion": 3.8,
+  "bundleVersion": 1,
+  "identifier": "com.sketchapp.plugins.svgo-compressor",
+  "commands": [
+    {
+      "name": "About SVGO Compressor",
+      "identifier": "svgCompress",
+      "script": "./plugin.js",
+      "handlers": {
+        "run" : "openSettings",
+        "actions": {
+          "ExportSlices": "compress",
+          "Export": "compress"
+        }
+      }
+    }
+  ]
+}

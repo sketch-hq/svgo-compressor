@@ -1,5 +1,4 @@
 node_modules
-build
-dist
 .DS_Store
 SVGO Compressor.sketchplugin
+src/svgo-plugins.js
