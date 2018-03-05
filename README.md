@@ -536,19 +536,13 @@ We would like to thank:
 
 ## Development
 
-Run
+This plugin is built using [skpm](https://github.com/skpm/skpm). To build it, just run
 
 ```
-npm install -g gulp
-npm install
+npm i
+skpm-build
 ```
 
-to install all the dependencies. Then run
+To edit the Plugin's code, edit the code in `src` and run `skpm-build` again (or, for the ultimate laziness, run `skpm-build --watch` and it will observe any changes in the files and rebuild the Plugin every time you save them.)
 
-```
-gulp
-```
-
-to build the Plugin in the 'dist' folder and install it into Sketch.
-
-To edit the Plugin's code, edit `src/plugin.js` and run `gulp` again (or, for the ultimate laziness, run `gulp watch` and it will observe any changes in the file and rebuild the Plugin every time you save it.)
+For more details, check the [skpm documentation](https://github.com/skpm/skpm/tree/master/docs).
