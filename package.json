@@ -6,7 +6,8 @@
   "skpm": {
     "name": "SVGO Compressor",
     "main": "SVGO Compressor.sketchplugin",
-    "manifest": "src/manifest.json"
+    "manifest": "src/manifest.json",
+    "appcast": "https://raw.githubusercontent.com/BohemianCoding/svgo-compressor/develop/.appcast.xml"
   },
   "main": "src/plugin.js",
   "scripts": {
