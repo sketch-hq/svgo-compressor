@@ -26,18 +26,64 @@ If for some reason you’re not happy with the default settings we’ve chosen, 
 
 Adds attributes to an outer `<svg>` element
 
-What it does:
+It will turn this:
 
-- nothing, apparently
+```xml
+<svg viewBox="0 0 100 50">
+```
+
+to this:
+
+```xml
+<svg width="100" height="50" viewBox="0 0 100 50">
+```
+Use the `attribute` parameter if you only have one attribute, or pass an array of attribute objects to `attributes`.
+
+Can be used with one or more attributes
+```xml
+{
+    "name": "addAttributesToSVGElement",
+    "params": {
+        "attribute": { "width": "100"},
+        "attributes": [
+            { "width": "100" },
+            { "height": "50" }
+        ]
+    }
+}
+```
 
 #### addClassesToSVGElement
 
 Adds classes to an outer `<svg>` element
 
-What it does:
+It will turn this:
 
-- nothing, apparently
+```xml
+<svg viewBox="0 0 100 50">
+```
 
+to this:
+
+```xml
+<svg viewBox="0 0 100 50" class="test another-test">
+```
+
+Use the `className` parameter if you only have one class, or pass an array of classes to `classNames`.
+
+Can be used with one or more attributes
+```xml
+{
+    "name": "addClassesToSVGElement",
+    "params": {
+        "className": "test",
+        "classNames": [
+            "test",
+            "another-test"
+        ]
+    }
+}
+```
 
 #### cleanupAttrs
 
