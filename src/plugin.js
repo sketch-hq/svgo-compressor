@@ -11,7 +11,7 @@ export function openSettings() {
 
   // Plugin was run from the menu, so let's open the settings window
   const response = dialog.showMessageBox({
-    buttons: ['Edit SVGO Settings…', 'Cancel'],
+    buttons: ['Edit SVGO Settings…', 'Reset SVGO Settings', 'Cancel'],
     message: "About SVGO Compressor",
     detail: "This Plugin uses SVGO to compress SVG assets exported from Sketch.\n\nIt works automatically whenever you export to SVG, so you don’t need to do anything special. Just work on your design as always, and enjoy smaller & cleaner SVG files.\n\nIf for some reason you’re not happy with the default options, you can edit the svgo.json file in the Application Support folder for Sketch.\n"
   })
@@ -19,6 +19,9 @@ export function openSettings() {
   if (response === 0) {
     // open the config
     spawnSync("/usr/bin/open", [svgoJSONFilePath])
+  } else if (response === 1) {
+    // reset config
+    fs.writeFileSync(svgoJSONFilePath, JSON.stringify(require('./defaultConfig'), null, '  '), 'utf8')
   }
 }
 
@@ -28,8 +31,15 @@ export function compress(context) {
     return
   }
 
+  const floatPrecision = typeof svgoJSON.floatPrecision !== 'undefined'
+    ? Number(svgoJSON.floatPrecision)
+    : undefined;
+
   const parsedSVGOPlugins = []
   svgoJSON.plugins.forEach(item => {
+    if (typeof item.enabled !== 'undefined' && !item.enabled) {
+      return
+    }
     const plugin = svgoPlugins[item.name]
     if (!plugin) {
       log('Plugin not found: ' + item.name)
@@ -40,10 +50,14 @@ export function compress(context) {
     plugin.active = true
     if (plugin.params) {
       // Plugin supports params
+
+      // Set floatPrecision across all the plugins
+      if (floatPrecision && 'floatPrecision' in plugin.params) {
+        plugin.params.floatPrecision = floatPrecision
+      }
       log('—› default params: ' + JSON.stringify(plugin.params, null, 2))
     }
     if (item.params != null) {
-      log('—› new params: ' + JSON.stringify(item.params, null, 2))
       if (typeof plugin.params === 'undefined') {
         plugin.params = {}
       }
@@ -68,17 +82,18 @@ export function compress(context) {
     log('Let‘s go…')
     let originalTotalSize = 0
     let compressedTotalSize = 0
+    if (typeof svgoJSON.full === 'undefined') { svgoJSON.full = true }
+    if (typeof svgoJSON.multipass === 'undefined') { svgoJSON.multipass = true }
     if (typeof svgoJSON.pretty === 'undefined') { svgoJSON.pretty = true }
     if (typeof svgoJSON.indent === 'undefined') { svgoJSON.indent = 2 }
     const svgCompressor = new svgo({
-      full: true,
+      full: svgoJSON.full,
       js2svg: {
         pretty: svgoJSON.pretty,
         indent: svgoJSON.indent
       },
-      plugins: parsedSVGOPlugins
-      // multipass: true
-      // floatPrecision: 1
+      plugins: parsedSVGOPlugins,
+      multipass: svgoJSON.multipass
     })
     Promise.all(filesToCompress.map(currentFile => {
       const svgString = fs.readFileSync(currentFile, 'utf8')
@@ -104,6 +119,10 @@ export function compress(context) {
       var msg = filesToCompress.length + " SVG files compressed by " + compressionRatio + "%, from " + originalTotalSize + " bytes to " + compressedTotalSize + " bytes."
       log(msg)
       UI.message(msg)
+    })
+    .catch((err) => {
+      log(err)
+      UI.message(err.message)
     })
   }
 }

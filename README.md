@@ -19,7 +19,14 @@ If you want your SVG assets uncompressed, you can temporarily disable the Plugin
 
 If for some reason you’re not happy with the default settings we’ve chosen, you can select **Plugins › SVGO Compressor › About SVGO Compressor** and then click the **Edit SVGO Settings…** button. You default editor will open the `svgo.json` file, where you’ll be able to tweak the settings.
 
-## SVGO Plugins: what they do
+### Top level settings
+
+- `pretty`: Make SVG pretty printed
+- `indent`: Indent number when pretty printing SVGs
+- `multipass`: Run the optimization 10 times
+- `floatPrecision`: The precision of the numbers to use in all the plugins
+
+### SVGO Plugins
 
 #### addAttributesToSVGElement
 
