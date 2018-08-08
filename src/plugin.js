@@ -24,9 +24,13 @@ export function openSettings() {
 
 export function compress(context) {
   const svgoJSON = getConfig()
-  var parsedSVGOPlugins = []
+  if (typeof svgoJSON.enabled !== 'undefined' && !svgoJSON.enabled) {
+    return
+  }
+
+  const parsedSVGOPlugins = []
   svgoJSON.plugins.forEach(item => {
-    var plugin = svgoPlugins[item.name]
+    const plugin = svgoPlugins[item.name]
     if (!plugin) {
       log('Plugin not found: ' + item.name)
       return
@@ -40,7 +44,7 @@ export function compress(context) {
     }
     if (item.params != null) {
       log('—› new params: ' + JSON.stringify(item.params, null, 2))
-      if (plugin.params == undefined) {
+      if (typeof plugin.params === 'undefined') {
         plugin.params = {}
       }
       for (var attrname in item.params) {
@@ -62,11 +66,11 @@ export function compress(context) {
 
   if (filesToCompress.length > 0) {
     log('Let‘s go…')
-    var originalTotalSize = 0
-    var compressedTotalSize = 0
-    if (svgoJSON.pretty == null) { svgoJSON.pretty = true }
-    if (svgoJSON.indent == null) { svgoJSON.indent = 2 }
-    var svgCompressor = new svgo({
+    let originalTotalSize = 0
+    let compressedTotalSize = 0
+    if (typeof svgoJSON.pretty === 'undefined') { svgoJSON.pretty = true }
+    if (typeof svgoJSON.indent === 'undefined') { svgoJSON.indent = 2 }
+    const svgCompressor = new svgo({
       full: true,
       js2svg: {
         pretty: svgoJSON.pretty,
@@ -77,7 +81,7 @@ export function compress(context) {
       // floatPrecision: 1
     })
     Promise.all(filesToCompress.map(currentFile => {
-      var svgString = fs.readFileSync(currentFile, 'utf8')
+      const svgString = fs.readFileSync(currentFile, 'utf8')
       originalTotalSize += svgString.length
 
       // Hacks for plugins
@@ -91,7 +95,7 @@ export function compress(context) {
         }
       })
 
-      return svgCompressor.optimize(svgString).then(function(result) {
+      return svgCompressor.optimize(svgString).then(result => {
         compressedTotalSize += result.data.length
         fs.writeFileSync(currentFile, result.data, 'utf8')
       })

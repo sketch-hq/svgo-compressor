@@ -21,7 +21,6 @@ If for some reason you’re not happy with the default settings we’ve chosen, 
 
 ## SVGO Plugins: what they do
 
-
 #### addAttributesToSVGElement
 
 Adds attributes to an outer `<svg>` element
@@ -37,9 +36,11 @@ to this:
 ```xml
 <svg width="100" height="50" viewBox="0 0 100 50">
 ```
+
 Use the `attribute` parameter if you only have one attribute, or pass an array of attribute objects to `attributes`.
 
 Can be used with one or more attributes
+
 ```xml
 {
     "name": "addAttributesToSVGElement",
@@ -72,6 +73,7 @@ to this:
 Use the `className` parameter if you only have one class, or pass an array of classes to `classNames`.
 
 Can be used with one or more attributes
+
 ```xml
 {
     "name": "addClassesToSVGElement",
@@ -95,7 +97,7 @@ It removes newlines, trailing and repeating spaces from all attributes in an SVG
 
 #### cleanupEnableBackground
 
-Remove or cleanup enable-background attr which coincides with a width/height box (see <http://www.w3.org/TR/SVG/filters.html#EnableBackgroundProperty>).
+Remove or cleanup enable-background attributes which coincides with a width/height box (see <http://www.w3.org/TR/SVG/filters.html#EnableBackgroundProperty>).
 
 It will turn this:
 
@@ -230,13 +232,13 @@ Enabled by default in SVGO Compressor.
 
 #### convertColors
 
-Converts colors: rgb() to #rrggbb and #rrggbb to #rgb.
+Converts colors: `rgb()` to `#rrggbb` and `#rrggbb` to `#rgb`.
 
 It supports the following features:
 
 - Convert color name keyword to long hex (`names2hex` param, enabled by default)
   - `fuchsia` ➡ `#ff00ff`
-- Convert rgb() to long hex (`rgb2hex` param, enabled by default)
+- Convert `rgb()` to long hex (`rgb2hex` param, enabled by default)
   - `rgb(255, 0, 255)` ➡ `#ff00ff`
   - `rgb(50%, 100, 100%)` ➡ `#7f64ff`
 - Convert long hex to short hex (`shorthex` param, enabled by default)
@@ -280,6 +282,11 @@ Converts matrices to the short aliases, converts long translate, scale or rotate
 
 Enabled by default in SVGO Compressor.
 
+#### inlineStyles
+
+Moves + merges styles from style elements to element styles.
+
+Off by default in SVGO Compressor.
 
 #### mergePaths
 
@@ -300,11 +307,11 @@ Collapses content's intersected and inheritable attributes to the existing group
 Turns this
 
 ```xml
- <g attr1="val1">
-   <g attr2="val2">
-     text
-   </g>
-   <circle attr2="val2" attr3="val3"/>
+<g attr1="val1">
+  <g attr2="val2">
+    text
+  </g>
+  <circle attr2="val2" attr3="val3"/>
 </g>
 ```
 
@@ -342,6 +349,12 @@ into this
   <path transform="scale(2) translate(10, 20)" d="M0,10 L20,30"/>
 </g>
 ```
+
+Off by default in SVGO Compressor.
+
+#### prefixIds
+
+Add a prefix to IDs.
 
 Off by default in SVGO Compressor.
 
@@ -482,6 +495,12 @@ Removes raster images references in `<image>`.
 
 Off by default in SVGO Compressor, since it's pretty destructive.
 
+#### removeScriptElement
+
+Removes the `<script>` element.
+
+Off by default in SVGO Compressor.
+
 #### removeStyleElement
 
 Removes the `<style>` element.
@@ -566,13 +585,6 @@ Sorts element attributes to improve readability.
 
 On by default in SVGO Compressor.
 
-#### transformsWithOnePath
-
-Performs a set of operations on SVG with one path inside.
-
-Off by default in SVGO Compressor, don't enable unless you really know what you're doing : )
-
-
 ## Acknowledgements
 
 We would like to thank:
@@ -586,9 +598,9 @@ This plugin is built using [skpm](https://github.com/skpm/skpm). To build it, ju
 
 ```
 npm i
-skpm-build
+npm run build
 ```
 
-To edit the Plugin's code, edit the code in `src` and run `skpm-build` again (or, for the ultimate laziness, run `skpm-build --watch` and it will observe any changes in the files and rebuild the Plugin every time you save them.)
+To edit the Plugin's code, edit the code in `src` and run `npm run build` again (or, for the ultimate laziness, run `npm run watch` and it will observe any changes in the files and rebuild the Plugin every time you save them.)
 
-For more details, check the [skpm documentation](https://github.com/skpm/skpm/tree/master/docs).
+For more details, check the [skpm documentation](https://github.com/skpm/skpm).
