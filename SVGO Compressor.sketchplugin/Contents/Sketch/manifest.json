@@ -1,0 +1,27 @@
+{
+  "compatibleVersion": 3.8,
+  "bundleVersion": 1,
+  "identifier": "com.sketchapp.plugins.svgo-compressor",
+  "icon": "svgo-compressor.png",
+  "commands": [
+    {
+      "name": "About SVGO Compressor",
+      "identifier": "svgCompress",
+      "script": "plugin.js",
+      "handlers": {
+        "run": "openSettings",
+        "actions": {
+          "ExportSlices": "compress",
+          "Export": "compress"
+        }
+      }
+    }
+  ],
+  "version": "1.5.1",
+  "description": "A Plugin that compresses SVG assets using SVGO, right when you export them. This Plugin *requires* Sketch 3.8.",
+  "name": "SVGO Compressor",
+  "disableCocoaScriptPreprocessor": true,
+  "appcast": "https://raw.githubusercontent.com/BohemianCoding/svgo-compressor/develop/.appcast.xml",
+  "author": "Ale Muñoz",
+  "authorEmail": "ale@sketchapp.com"
+}
