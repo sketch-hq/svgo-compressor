@@ -1,6 +1,6 @@
 {
   "name": "svgo-compressor",
-  "version": "1.5.2",
+  "version": "1.6.0",
   "license": "MIT",
   "description": "A Plugin that compresses SVG assets using SVGO, right when you export them. This Plugin *requires* Sketch 3.8.",
   "skpm": {
