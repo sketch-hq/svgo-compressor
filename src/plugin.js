@@ -1,4 +1,5 @@
-import getConfig, {svgoJSONFilePath} from './getConfig'
+import getConfig, { svgoJSONFilePath } from './getConfig'
+import path from '@skpm/path'
 import fs from '@skpm/fs'
 import dialog from '@skpm/dialog'
 import {spawnSync} from '@skpm/child_process'
@@ -7,8 +8,6 @@ import svgoPlugins from './svgo-plugins'
 import UI from 'sketch/ui'
 
 export function openSettings() {
-  const config = getConfig()
-
   // Plugin was run from the menu, so let's open the settings window
   const response = dialog.showMessageBox({
     buttons: ['Edit SVGO Settings…', 'Reset SVGO Settings', 'Cancel'],
@@ -40,12 +39,29 @@ export function compress(context) {
     if (typeof item.enabled !== 'undefined' && !item.enabled) {
       return
     }
-    const plugin = svgoPlugins[item.name]
+    let plugin = svgoPlugins[item.name]
+    if (item.path) {
+      try {
+        const loadedPlugin = coscript.require(path.join(String(MSPluginManager.mainPluginsFolderURL().path()), item.path))
+
+        // loadedPlugin is an NSDictionary so if we try to set something on it,
+        // it will crash. Instead we move the values to a proper JS object.
+        var keys = Object.keys(loadedPlugin);
+        plugin = {};
+        Object.keys(loadedPlugin).forEach((k) => { plugin[k] = loadedPlugin[k] })
+        if (loadedPlugin.params) {
+          plugin.params = {}
+          Object.keys(loadedPlugin.params).forEach((k) => { plugin.params[k] = loadedPlugin.params[k] })
+        }
+      } catch (err) {
+        log(err)
+      }
+    }
     if (!plugin) {
-      log('Plugin not found: ' + item.name)
+      log('Plugin not found: ' + (item.name || item.path))
       return
     }
-    log('Enabled plugin: ' + item.name)
+    if (svgoJSON.debug) log('Enabled plugin: ' + (item.name || item.path))
     plugin.pluginName = item.name
     plugin.active = true
     if (plugin.params) {
@@ -55,7 +71,7 @@ export function compress(context) {
       if (floatPrecision && 'floatPrecision' in plugin.params) {
         plugin.params.floatPrecision = floatPrecision
       }
-      log('—› default params: ' + JSON.stringify(plugin.params, null, 2))
+      if (svgoJSON.debug) log('—› default params: ' + JSON.stringify(plugin.params, null, 2))
     }
     if (item.params != null) {
       if (typeof plugin.params === 'undefined') {
@@ -64,7 +80,7 @@ export function compress(context) {
       for (var attrname in item.params) {
         plugin.params[attrname] = item.params[attrname]
       }
-      log('—› resulting params: ' + JSON.stringify(plugin.params, null, 2))
+      if (svgoJSON.debug) log('—› resulting params: ' + JSON.stringify(plugin.params, null, 2))
     }
     parsedSVGOPlugins.push([plugin])
   })
@@ -79,7 +95,7 @@ export function compress(context) {
   }
 
   if (filesToCompress.length > 0) {
-    log('Let‘s go…')
+    if (svgoJSON.debug) log('Let‘s go…')
     let originalTotalSize = 0
     let compressedTotalSize = 0
     if (typeof svgoJSON.full === 'undefined') { svgoJSON.full = true }
@@ -105,7 +121,7 @@ export function compress(context) {
         if (plugin.pluginName == "cleanupIDs") {
           const parts = currentFile.split('/')
           var prefix = parts[parts.length - 1].replace('.svg', '').replace(/\s+/g, '-').toLowerCase() + "-"
-          log('Setting cleanupIDs prefix to: ' + prefix)
+          if (svgoJSON.debug) log('Setting cleanupIDs prefix to: ' + prefix)
           plugin.params['prefix'] = prefix
         }
       })

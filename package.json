@@ -29,6 +29,7 @@
     "@skpm/child_process": "^0.2.4",
     "@skpm/dialog": "^0.2.3",
     "@skpm/fs": "^0.1.4",
+    "@skpm/path": "^0.1.0",
     "svgo": "^1.0.5"
   }
 }

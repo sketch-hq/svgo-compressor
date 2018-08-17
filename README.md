@@ -25,6 +25,7 @@ If for some reason you’re not happy with the default settings we’ve chosen, 
 - `indent`: Indent number when pretty printing SVGs
 - `multipass`: Run the optimization 10 times
 - `floatPrecision`: The precision of the numbers to use in all the plugins
+- `debug`: Print some logs to help debug the SVGO configuration
 
 ### SVGO Plugins
 
@@ -591,6 +592,24 @@ On by default in SVGO Compressor.
 Sorts element attributes to improve readability.
 
 On by default in SVGO Compressor.
+
+### Custom SVGO Plugins
+
+__requires Sketch >= 52__
+
+You can specify custom SVGO plugins by giving a relative path to a JS file instead of a name:
+
+```diff
+...
++ {
++   "path": "./SVGO-plugins/sRGB-blur.js",
++   "enabled": true,
++   "params": {}
++ }
+```
+
+You can find a list of custom SVGO plugins that the community created:
+- [sRGB-blur](https://gist.github.com/mathieudutour/73309f6fb7fb6e7b830e20e43ee8f850) (see #40)
 
 ## Acknowledgements
 
