@@ -17,7 +17,7 @@
       }
     }
   ],
-  "version": "1.5.1",
+  "version": "1.6.0",
   "description": "A Plugin that compresses SVG assets using SVGO, right when you export them. This Plugin *requires* Sketch 3.8.",
   "name": "SVGO Compressor",
   "disableCocoaScriptPreprocessor": true,
