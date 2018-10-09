@@ -22,14 +22,14 @@
   },
   "author": "Ale Muñoz <ale@sketchapp.com>",
   "devDependencies": {
-    "@skpm/builder": "^0.4.1"
+    "@skpm/builder": "^0.5.10"
   },
   "repository": "https:/github.com/BohemianCoding/svgo-compressor",
   "dependencies": {
     "@skpm/child_process": "^0.2.4",
     "@skpm/dialog": "^0.2.3",
-    "@skpm/fs": "^0.1.4",
+    "@skpm/fs": "^0.2.0",
     "@skpm/path": "^0.1.0",
-    "svgo": "^1.0.5"
+    "svgo": "^1.1.1"
   }
 }
