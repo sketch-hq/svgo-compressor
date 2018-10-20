@@ -610,6 +610,7 @@ You can specify custom SVGO plugins by giving a relative path to a JS file inste
 
 You can find a list of custom SVGO plugins that the community created:
 - [sRGB-blur](https://gist.github.com/mathieudutour/73309f6fb7fb6e7b830e20e43ee8f850) (see #40)
+- [convertIdToClass](https://gist.github.com/bomberstudios/848827b37bed38ca0aae5fe2bbd0843a)
 
 ## Acknowledgements
 
