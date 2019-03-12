@@ -20,7 +20,7 @@
     "postinstall": "npm run build && skpm-link",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Ale Muñoz <ale@sketchapp.com>",
+  "author": "Sketch",
   "devDependencies": {
     "@skpm/builder": "^0.5.10"
   },
@@ -30,6 +30,6 @@
     "@skpm/dialog": "^0.2.3",
     "@skpm/fs": "^0.2.0",
     "@skpm/path": "^0.1.0",
-    "svgo": "^1.1.1"
+    "svgo": "^1.2.0"
   }
 }

@@ -366,6 +366,34 @@ Add a prefix to IDs.
 
 Off by default in SVGO Compressor.
 
+#### removeAttributesBySelector
+
+Removes attributes of elements that match a css selector.
+
+Example:
+
+```json
+"plugins": [
+  {
+    "name": "removeAttributesBySelector",
+    "params": {
+      "selectors": [
+        {
+          "selector": "[fill='#00ff00']",
+          "attributes": ["fill"]
+        },
+        {
+          "selector": "#remove",
+          "attributes": ["stroke", "id"]
+        }
+      ]
+    }
+  }
+]
+```
+
+Off by default in SVGO Compressor.
+
 #### removeAttrs
 
 Removes the specified attributes in the plugin params.
@@ -497,6 +525,12 @@ Removes non-inheritable group's "presentation" attributes.
 
 On by default in SVGO Compressor.
 
+#### removeOffCanvasPaths
+
+Remove elements that are drawn outside of the viewbox.
+
+Off by default in SVGO Compressor.
+
 #### removeRasterImages
 
 Removes raster images references in `<image>`.
@@ -587,6 +621,12 @@ Removes XML Processing Instruction (the `<?xml version="1.0" encoding="UTF-8"?>`
 
 On by default in SVGO Compressor.
 
+#### reusePaths
+
+Finds `<path>` elements with the same `d`, `fill`, and `stroke`, and converts them to `<use>` elements referencing a single `<path>` def.
+
+Off by default in SVGO Compressor.
+
 #### sortAttrs
 
 Sorts element attributes to improve readability.
@@ -609,6 +649,7 @@ You can specify custom SVGO plugins by giving a relative path to a JS file inste
 ```
 
 You can find a list of custom SVGO plugins that the community created:
+
 - [sRGB-blur](https://gist.github.com/mathieudutour/73309f6fb7fb6e7b830e20e43ee8f850) (see #40)
 - [convertIdToClass](https://gist.github.com/bomberstudios/848827b37bed38ca0aae5fe2bbd0843a)
 
@@ -623,11 +664,18 @@ We would like to thank:
 
 This plugin is built using [skpm](https://github.com/skpm/skpm). To build it, just run
 
-```
+```bash
 npm i
 npm run build
 ```
 
 To edit the Plugin's code, edit the code in `src` and run `npm run build` again (or, for the ultimate laziness, run `npm run watch` and it will observe any changes in the files and rebuild the Plugin every time you save them.)
+
+To update SVGO:
+
+- update the dependency in `package.json`
+- run `npm install`
+- run `npm run build`. It should tell you if any SVGO plugin documentation is missing. If so, please add it.
+- make sure the default configuration (`src/defaultConfig.js`) is compatible with the SVGO plugins.
 
 For more details, check the [skpm documentation](https://github.com/skpm/skpm).
