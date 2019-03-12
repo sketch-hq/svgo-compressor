@@ -1,4 +1,4 @@
 node_modules
 .DS_Store
-# SVGO Compressor.sketchplugin
+SVGO Compressor.sketchplugin
 src/svgo-plugins.js

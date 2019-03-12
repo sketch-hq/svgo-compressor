@@ -5,7 +5,7 @@
 // So, for every SVGO Plugin you want to use, you'll have to add an object to svgoJSON.plugins,
 // with a 'name' key and a 'params' key (optional, only needed if you want to change any of the default params for a plugin)
 //
-// This is the list of SVGO Plugins available taken from https://github.com/svg/svgo/blob/master/.svgo.yml. The order is important!s
+// This is the list of SVGO Plugins available taken from https://github.com/svg/svgo/blob/master/.svgo.yml. The order is important!
 //
 // These are some sane defaults we've found to work reasonably well, compressing your SVG without
 // altering the shapes or the look. Your milleage may vary, so feel free to tweak these…
@@ -55,10 +55,13 @@ module.exports = {
     { "name": "removeDesc", enabled: true, "params": { "removeAny": true } },
     { "name": "removeDimensions", enabled: false },
     { "name": "removeAttrs", enabled: false },
+    { "name": "removeAttributesBySelector", enabled: false },
     { "name": "removeElementsByAttr", enabled: false },
     { "name": "addClassesToSVGElement", enabled: false },
     { "name": "removeStyleElement", enabled: false },
     { "name": "removeScriptElement", enabled: false },
     { "name": "addAttributesToSVGElement", enabled: false },
+    { "name": "removeOffCanvasPaths", enabled: false },
+    { "name": "reusePaths", enabled: false }
   ]
 }
