@@ -28,7 +28,7 @@
   "repository": "https:/github.com/BohemianCoding/svgo-compressor",
   "dependencies": {
     "@skpm/child_process": "^0.2.4",
-    "@skpm/dialog": "^0.2.3",
+    "@skpm/dialog": "^0.2.6",
     "@skpm/fs": "^0.2.0",
     "@skpm/path": "^0.1.0",
     "svgo": "^1.2.0"
