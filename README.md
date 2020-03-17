@@ -1,6 +1,6 @@
 # SVGO Compressor
 
-A Plugin that compresses SVG assets using SVGO, right when you export them. This Plugin *requires* Sketch 3.8.
+A Plugin that compresses SVG assets using SVGO, right when you export them.
 
 ## Install
 
@@ -632,6 +632,13 @@ Off by default in SVGO Compressor.
 Sorts element attributes to improve readability.
 
 On by default in SVGO Compressor.
+
+#### sortDefsChildren
+
+Sort children of `<defs>` in order to improve compression.
+
+On by default in SVGO Compressor.
+
 
 ### Custom SVGO Plugins
 

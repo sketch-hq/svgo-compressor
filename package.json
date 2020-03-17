@@ -23,12 +23,12 @@
   },
   "author": "Sketch",
   "devDependencies": {
-    "@skpm/builder": "^0.7.4",
-    "serialize-javascript": ">=2.1.1"
+    "@skpm/builder": "^0.7.5",
+    "serialize-javascript": "^3.0.0"
   },
   "repository": "https:/github.com/BohemianCoding/svgo-compressor",
   "dependencies": {
-    "@skpm/child_process": "^0.4.1",
+    "@skpm/child_process": "^0.4.2",
     "@skpm/dialog": "^0.4.0",
     "@skpm/fs": "^0.2.0",
     "@skpm/path": "^0.1.0",
