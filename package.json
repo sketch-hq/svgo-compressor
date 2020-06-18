@@ -7,7 +7,7 @@
     "name": "SVGO Compressor",
     "main": "SVGO Compressor.sketchplugin",
     "manifest": "src/manifest.json",
-    "appcast": "https://raw.githubusercontent.com/BohemianCoding/svgo-compressor/develop/.appcast.xml",
+    "appcast": "https://raw.githubusercontent.com/sketch-hq/svgo-compressor/develop/.appcast.xml",
     "assets": [
       "assets/**/*"
     ]
