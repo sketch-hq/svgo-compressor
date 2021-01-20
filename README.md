@@ -166,10 +166,6 @@ We work around this issue by adding a prefix for each asset, based on its filena
 ]
 ```
 
-TODO: send SVGO a pull request to do this on their side, using something like an `autoprefix` param.
-
-TODO: we should do a better job with this in Sketch, since we're basically using `path-X` ourselves, where `X` is a number that starts from 1 for *each* exported asset. We should probably use the path name, or something derived from it.
-
 #### cleanupListOfValues
 
 Rounds list of values to the fixed precision (defaults to 3 decimals) in the following attributes:
