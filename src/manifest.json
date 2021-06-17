@@ -15,6 +15,13 @@
           "Export": "compress"
         }
       }
+    },
+    {
+      "name": "Copy optimized SVG code",
+      "identifier": "svgCopyCompressed",
+      "script": "./plugin.js",
+      "handler":"svgCopyCompressed",
+      "shortcut": "cmd ctrl shift s"
     }
   ]
 }
