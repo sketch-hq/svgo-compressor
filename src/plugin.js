@@ -1,5 +1,6 @@
 import fs from '@skpm/fs'
 import dialog from '@skpm/dialog'
+import sketch from 'sketch'
 import UI from 'sketch/ui'
 import { optimize, loadConfig } from 'svgo'
 
@@ -18,7 +19,15 @@ export function compress(context) {
   exports.forEach(currentExport => {
     if (currentExport.request.format() == 'svg') {
       filesToCompress++
-      const currentFile = currentExport.path
+      let currentFile
+      console.log(sketch.version.sketch)
+      if (sketch.version.sketch == '76' || sketch.version.sketch == '76.1') {
+        // This was broken momentarily in Sketch 76 and 76.1,
+        // so we need to use a workaround
+        currentFile = currentExport.path.path()
+      } else {
+        currentFile = currentExport.path
+      }
       const svgString = fs.readFileSync(currentFile, 'utf8')
       const config = {...loadConfig(), ...{
         path: currentFile,
