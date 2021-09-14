@@ -1,6 +1,6 @@
 {
   "name": "svgo-compressor",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "license": "MIT",
   "description": "A Plugin that compresses SVG assets using SVGO, right when you export them. This Plugin *requires* Sketch 3.8.",
   "skpm": {
@@ -14,7 +14,7 @@
   },
   "main": "src/plugin.js",
   "scripts": {
-    "build": "node ./scripts/build-plugins.js && skpm-build",
+    "build": "skpm-build",
     "watch": "skpm-build --watch",
     "start": "skpm-build --watch --run",
     "postinstall": "npm run build && skpm-link",
@@ -23,15 +23,13 @@
   },
   "author": "Sketch",
   "devDependencies": {
-    "@skpm/builder": "^0.7.7",
-    "serialize-javascript": "^3.1.0"
+    "@skpm/builder": "0.8.0",
+    "serialize-javascript": "6.0.0"
   },
   "repository": "https:/github.com/BohemianCoding/svgo-compressor",
   "dependencies": {
-    "@skpm/child_process": "^0.4.2",
-    "@skpm/dialog": "^0.4.0",
-    "@skpm/fs": "^0.2.6",
-    "@skpm/path": "^0.1.0",
-    "svgo": "^1.3.2"
+    "@skpm/dialog": "0.4.2",
+    "@skpm/fs": "0.2.6",
+    "svgo": "2.6.0"
   }
 }
