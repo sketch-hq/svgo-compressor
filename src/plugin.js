@@ -20,7 +20,6 @@ export function compress(context) {
     if (currentExport.request.format() == 'svg') {
       filesToCompress++
       let currentFile
-      console.log(sketch.version.sketch)
       if (sketch.version.sketch == '76' || sketch.version.sketch == '76.1') {
         // This was broken momentarily in Sketch 76 and 76.1,
         // so we need to use a workaround
