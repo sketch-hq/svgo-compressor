@@ -5,7 +5,7 @@ import UI from 'sketch/ui'
 import { optimize, loadConfig } from 'svgo'
 
 
-export function openSettings() {
+export function showAbout() {
   // Plugin was run from the menu, so let's open the about window
   const response = dialog.showMessageBox({
     message: "About SVGO Compressor",
