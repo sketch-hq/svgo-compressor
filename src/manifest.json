@@ -8,8 +8,9 @@
       "name": "About SVGO Compressor",
       "identifier": "svgCompress",
       "script": "./plugin.js",
+      "scope": "application",
       "handlers": {
-        "run" : "openSettings",
+        "run" : "showAbout",
         "actions": {
           "ExportSlices": "compress",
           "Export": "compress"
