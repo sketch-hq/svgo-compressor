@@ -7,7 +7,6 @@
     "name": "SVGO Compressor",
     "main": "SVGO Compressor.sketchplugin",
     "manifest": "src/manifest.json",
-    "appcast": "https://raw.githubusercontent.com/sketch-hq/svgo-compressor/develop/.appcast.xml",
     "assets": [
       "assets/**/*"
     ]
@@ -26,7 +25,7 @@
     "@skpm/builder": "0.8.0",
     "serialize-javascript": "6.0.0"
   },
-  "repository": "https:/github.com/BohemianCoding/svgo-compressor",
+  "repository": "https://github.com/sketch-hq/svgo-compressor",
   "dependencies": {
     "@skpm/dialog": "0.4.2",
     "@skpm/fs": "0.2.6",
