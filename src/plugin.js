@@ -20,12 +20,11 @@ export function compress(context) {
     if (currentExport.request.format() == 'svg') {
       filesToCompress++
       let currentFile
-      if (sketch.version.sketch == '76' || sketch.version.sketch == '76.1') {
-        // This was broken momentarily in Sketch 76 and 76.1,
-        // so we need to use a workaround
+      // This was broken momentarily between Sketch 76 and 77
+      // so we need to use a workaround
+      currentFile = currentExport.path
+      if (currentExport.path.path !== undefined) {
         currentFile = currentExport.path.path()
-      } else {
-        currentFile = currentExport.path
       }
       const svgString = fs.readFileSync(currentFile, 'utf8')
       const config = {...loadConfig(), ...{
