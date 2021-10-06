@@ -21,7 +21,7 @@ SVGO Compressor uses a default configuration that does a reasonable job of compr
 
 For a complete reference of what your SVGO config should look like, see [SVGO’s configuration documentation](https://github.com/svg/svgo#configuration).
 
-Note that any option that is not set on your custom configuration will use the defaults set by SVGO Compressor. For example, here's how a sample configuration to output unminified code could look like:
+Any option that is not set on your custom configuration will use the defaults set by SVGO Compressor. For example, here's how a sample configuration to output unminified code could look like:
 
 ```javascript
 module.exports = {
@@ -32,7 +32,7 @@ module.exports = {
 }
 ```
 
-Again, for more information about custom configurations please refer to SVGO's own documentation.
+Again, for more information about custom configurations please refer to SVGO's own documentation. Please note that the custom plugins feature is untested in SVGO Compressor, so it may or may not work.
 
 ## Acknowledgements
 
