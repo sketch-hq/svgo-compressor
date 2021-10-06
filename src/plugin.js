@@ -1,9 +1,7 @@
 import fs from '@skpm/fs'
 import dialog from '@skpm/dialog'
-import sketch from 'sketch'
 import UI from 'sketch/ui'
-import { optimize, loadConfig } from 'svgo'
-
+import { optimize } from 'svgo'
 
 export function showAbout() {
   // Plugin was run from the menu, so let's open the about window
@@ -27,7 +25,16 @@ export function compress(context) {
         currentFile = currentExport.path.path()
       }
       const svgString = fs.readFileSync(currentFile, 'utf8')
-      const config = {...loadConfig(), ...{
+
+      // Load external SVGO config, if it exists
+      const homeDir = NSHomeDirectory()
+      const configFile = homeDir + '/Library/Application\ Support/com.bohemiancoding.sketch3/Plugins/svgo.config.js'
+      let externalConfig = {}
+      if (fs.existsSync(configFile)) {
+        externalConfig = eval(fs.readFileSync(configFile, 'utf8'))
+      }
+
+      const config = {...externalConfig, ...{
         path: currentFile,
         multipass: true,
         plugins: [
