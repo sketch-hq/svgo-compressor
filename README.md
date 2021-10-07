@@ -15,6 +15,25 @@ You’ll get a message on your document window to let you know the compression w
 
 If you need uncompressed SVG assets, you can temporarily disable the Plugin by opening Sketch’s **Preferences › Plugins** and unchecking 'SVGO Compressor'. Or you can right-click any layer and select **Copy SVG Code**, and that will give you the original, uncompressed code.
 
+## Custom SVGO configuration
+
+SVGO Compressor uses a default configuration that does a reasonable job of compressing SVG code, while maintaining compatibility and avoiding rendering issues. If you need to change the defaults, you can do so by creating an `svgo.config.js` file in Sketch's `Plugins` directory (located by default in `~/Library/Application\ Support/com.bohemiancoding.sketch3/Plugins/`).
+
+For a complete reference of what your SVGO config should look like, see [SVGO’s configuration documentation](https://github.com/svg/svgo#configuration).
+
+Any option that is not set on your custom configuration will use the defaults set by SVGO Compressor. For example, here's how a sample configuration to output unminified code could look like:
+
+```javascript
+module.exports = {
+  js2svg: {
+    indent: 2,
+    pretty: true,
+  }
+}
+```
+
+Again, for more information about custom configurations please refer to SVGO's own documentation. Please note that the custom plugins feature is untested in SVGO Compressor, so it may or may not work.
+
 ## Acknowledgements
 
 We would like to thank:

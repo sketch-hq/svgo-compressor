@@ -31,7 +31,12 @@ export function compress(context) {
       const configFile = homeDir + '/Library/Application\ Support/com.bohemiancoding.sketch3/Plugins/svgo.config.js'
       let externalConfig = {}
       if (fs.existsSync(configFile)) {
-        externalConfig = eval(fs.readFileSync(configFile, 'utf8'))
+        // Do not explode if the file is not valid JS
+        try {
+          externalConfig = eval(fs.readFileSync(configFile, 'utf8'))
+        } catch (error) {
+          console.log("Error: " + error.message)
+        }
       }
 
       const config = {...externalConfig, ...{
