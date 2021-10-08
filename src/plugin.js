@@ -38,8 +38,7 @@ export function compress(context) {
           console.log("Error: " + error.message)
         }
       }
-
-      const config = {...externalConfig, ...{
+      const defaultConfig = {
         path: currentFile,
         multipass: true,
         plugins: [
@@ -61,8 +60,9 @@ export function compress(context) {
               }
             }
           }
-        ]
-      }}
+        ],
+      }
+      const config = { ...defaultConfig, ...externalConfig }
       const result = optimize(svgString, config)
       fs.writeFileSync(currentFile, result.data, 'utf8')
     }
