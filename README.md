@@ -32,6 +32,36 @@ module.exports = {
 }
 ```
 
+Keep in mind that our defaults do not match the ones in SVGO 100%. If you use the `preset-default` option in SVGO your results may vary from the ones this plugin exports. For the record, here's the default configuration we use:
+
+```
+{
+  path: currentFile, // This is the path to the currently exported SVG asset
+  multipass: true,
+  plugins: [
+    {
+      name: 'preset-default',
+      params: {
+        overrides: {
+          inlineStyles: false,
+          convertStyleToAttrs: true,
+          cleanupListOfValues: true,
+          removeViewBox: false,
+          cleanupEnableBackground: false,
+          removeHiddenElems: false,
+          convertShapeToPath: false,
+          moveElemsAttrsToGroup: false,
+          moveGroupAttrsToElems: false,
+          convertPathData: false,
+          sortAttrs: true,
+        }
+      }
+    }
+  ],
+}
+```
+
+
 Again, for more information about custom configurations please refer to SVGO's own documentation. Please note that the custom plugins feature is untested in SVGO Compressor, so it may or may not work.
 
 ## Acknowledgements
