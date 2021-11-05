@@ -29,6 +29,6 @@
   "dependencies": {
     "@skpm/dialog": "0.4.2",
     "@skpm/fs": "0.2.6",
-    "svgo": "2.7.0"
+    "svgo": "2.8.0"
   }
 }
