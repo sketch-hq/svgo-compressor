@@ -67,5 +67,7 @@ export function compress(context) {
       fs.writeFileSync(currentFile, result.data, 'utf8')
     }
   })
-  UI.message(`SVGO Compressor: ${filesToCompress} file${filesToCompress == 1 ? '' : 's'} compressed`)
+  if (filesToCompress > 0) {
+    UI.message(`SVGO Compressor: ${filesToCompress} file${filesToCompress == 1 ? '' : 's'} compressed`)
+  }
 }
