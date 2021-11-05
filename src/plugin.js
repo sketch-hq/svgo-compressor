@@ -47,8 +47,6 @@ export function compress(context) {
             params: {
               overrides: {
                 inlineStyles: false,
-                convertStyleToAttrs: true,
-                cleanupListOfValues: true,
                 removeViewBox: false,
                 cleanupEnableBackground: false,
                 removeHiddenElems: false,
@@ -56,10 +54,12 @@ export function compress(context) {
                 moveElemsAttrsToGroup: false,
                 moveGroupAttrsToElems: false,
                 convertPathData: false,
-                sortAttrs: true,
               }
             }
-          }
+          },
+          'convertStyleToAttrs',
+          'cleanupListOfValues',
+          'sortAttrs'
         ],
       }
       const config = { ...defaultConfig, ...externalConfig }
